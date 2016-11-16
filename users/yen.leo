@@ -9,7 +9,7 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
-<v t="leo.20151212173315.1" a="E"><vh>@settings</vh>
+<v t="leo.20151212173315.1"><vh>@settings</vh>
 <v t="leo.20151212173315.2"><vh>@data qt-gui-plugin-style-sheet</vh></v>
 <v t="leo.20151212173315.3"><vh>@string initial_split_orientation = horizontal</vh></v>
 </v>
@@ -93,7 +93,7 @@
 </v>
 </v>
 </v>
-<v t="leo.20151213230723.1" a="E"><vh>Pelican 設定</vh>
+<v t="leo.20151213230723.1"><vh>Pelican 設定</vh>
 <v t="leo.20151213230957.1"><vh>文章 Date 設定</vh></v>
 <v t="leo.20151213230729.1"><vh>使用 summary plugin</vh></v>
 </v>
@@ -105,7 +105,7 @@
 </v>
 <v t="amd.20151215170350.1"><vh>以下為 content 目錄中的 md 檔案</vh></v>
 <v t="amd.20151216001126.1"><vh>md 檔案範例</vh></v>
-<v t="amd.20151215170031.1" a="E"><vh>@path ./../content</vh>
+<v t="amd.20151215170031.1"><vh>@path ./../content</vh>
 <v t="amd.20160106093454.1" a="E"><vh>yen 所寫的網誌文章</vh>
 <v t="amd.20160727114506.1" a="E"><vh>201609</vh>
 <v t="amd.20160727120222.1"><vh>@edit 20160921.md</vh></v>
@@ -113,24 +113,11 @@
 </v>
 </v>
 </v>
-<v t="amd.20160106094754.1" a="E"><vh>@path ./../content/pages</vh>
+<v t="amd.20160106094754.1"><vh>@path ./../content/pages</vh>
 <v t="amd.20160106094829.1" a="E"><vh>yen 所寫的 pages 文章</vh>
 <v t="amd.20160106094844.1"><vh>@edit pages_1.md</vh></v>
 </v>
 </v>
-<v t="amd.20161004202833.1"><vh>@edit ../README.md</vh></v>
-<v t="yen.20161022132258.1"><vh>移除子模組</vh>
-<v t="yen.20161022132307.1" a="E"><vh>@path ./../</vh>
-<v t="yen.20161022132317.1"><vh>@edit .gitmodules</vh></v>
-<v t="yen.20161022132456.1" a="E"><vh>@path .git</vh>
-<v t="yen.20161022132504.1"><vh>@edit config</vh></v>
-</v>
-</v>
-</v>
-<v t="yen.20161022151637.1"><vh>在近端工作模式</vh></v>
-<v t="yen.20161022124416.1"><vh>@button https server</vh></v>
-<v t="yen.20161022151553.1"><vh>產生 .key 與 .crt</vh></v>
-<v t="yen.20161022145129.1"><vh>子模組資料</vh></v>
 </vnodes>
 <tnodes>
 <t tx="amd.20151215170031.1"></t>
@@ -718,62 +705,5 @@ Created by [2016fallcadp_bg4](https://40423204.github.io/2016fallcadp_bg4/blog/)
 @others
 &lt;/section&gt;
 </t>
-<t tx="yen.20161022124416.1">@language python
-import os
-import subprocess
-import threading
-import http.server, ssl
-
-def domake():
-    # build directory
-    os.chdir("./../")
-    server_address = ('localhost', 9443)
-    httpd = http.server.HTTPServer(server_address, http.server.SimpleHTTPRequestHandler)
-    httpd.socket = ssl.wrap_socket(httpd.socket,
-                                   server_side=True,
-                                   certfile='localhost.crt',
-                                   keyfile='localhost.key',
-                                   ssl_version=ssl.PROTOCOL_TLSv1)
-    print("9443 https server started")
-    httpd.serve_forever()
-
-# 利用執行緒執行 https 伺服器
-make = threading.Thread(target=domake)
-make.start()</t>
-<t tx="yen.20161022132258.1"></t>
-<t tx="yen.20161022132307.1"></t>
-<t tx="yen.20161022132456.1"></t>
-<t tx="yen.20161022145129.1">[submodule "g1"]
-	path = g1
-	url = https://github.com/40123252/2016fallcadp_bg1.git
-	branch = gh-pages
-[submodule "g2"]
-	path = g2
-	url = https://github.com/40223205/2016fallcadp_bg2.git
-	branch = gh-pages
-[submodule "g3"]
-	path = g3
-	url = https://github.com/40423201/2016fallcadp_bg03.git
-	branch = gh-pages
-[submodule "g7"]
-	path = g7
-	url = https://github.com/404232077/2016fallcadp_bg07.git
-	branch = gh-pages
-[submodule "g8"]
-	path = g8
-	url = https://github.com/40423208/2016fallcadp_bg8.git
-	branch = gh-pages
-[submodule "g11"]
-	path = g11
-	url = https://github.com/40423234/2016fallcadp_bg11.git
-	branch = gh-pages
-[submodule "g5"]
-	path = g5
-	url = https://github.com/40423205/2016fallcadp_bg5.git
-	branch = gh-pages</t>
-<t tx="yen.20161022151553.1">sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout localhost.key -out localhost.crt
-
-</t>
-<t tx="yen.20161022151637.1">啟動 https://localhost:4443 後可以直接測試</t>
 </tnodes>
 </leo_file>
